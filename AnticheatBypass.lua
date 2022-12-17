@@ -39,16 +39,3 @@ __namecall = hookmetamethod(game, "__namecall", function(...)
     -- //
     return __namecall(...)
 end)
-
--- // __index hook
-local __index
-__index = hookmetamethod(game, "__index", function(t, k)
-    -- // Make sure it's trying to get our humanoid's ws/jp
-    if (not checkcaller() and t:IsA("Humanoid") and (k == "WalkSpeed" or k == "JumpPower")) then
-        -- // Return spoof values
-        return SpoofTable[k]
-    end
-
-    -- //
-    return __index(t, k)
-end)
