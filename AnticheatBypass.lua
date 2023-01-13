@@ -29,9 +29,9 @@ __namecall = hookmetamethod(game, "__namecall", function(...)
     end
 
     -- // Anti Crash
-    if (not checkcaller() and getfenv(2).crash) then
+    if (not checkcaller() and getfenv(2).freeze) then
         -- // Hook the crash function to make it not work
-        hookfunction(getfenv(2).crash, function()
+        hookfunction(getfenv(2).freeze, function()
             warn("Crash Attempt") 
         end)
     end
