@@ -27,14 +27,6 @@ __namecall = hookmetamethod(game, "__namecall", function(...)
     if (method == "FireServer" and self == MainEvent and tablefind(Flags, args[2])) then
         return
     end
-
-    -- // Anti Crash
-    if (not checkcaller() and getfenv(2).freeze) then
-        -- // Hook the crash function to make it not work
-        hookfunction(getfenv(2).freeze, function()
-            warn("Crash Attempt") 
-        end)
-    end
     
     -- //
     return __namecall(...)
