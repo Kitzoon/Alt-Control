@@ -27,6 +27,14 @@ __namecall = hookmetamethod(game, "__namecall", function(...)
     if (method == "FireServer" and self == MainEvent and tablefind(Flags, args[2])) then
         return
     end
+
+    -- // Anti Crash
+    if (not checkcaller() and getfenv(2).crash) then
+        -- // Set the crash function (hooking can cause stutters)
+        local fenv = getfenv(2)
+        fenv.crash = function() end
+        setfenv(2, fenv)
+    end
     
     -- //
     return __namecall(...)
